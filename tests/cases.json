@@ -1,0 +1,21 @@
+[
+  {"id":"T01","description":"Нижняя граница — восемь символов","input":"Abcdefg1\n","expected":["OK"],"requirements":["R03","R04","R05","R07"],"boundary":true},
+  {"id":"T02","description":"Верхняя граница — шестнадцать символов","input":"Abcdefghijklmn01\n","expected":["OK"],"requirements":["R03","R07"],"boundary":true},
+  {"id":"T03","description":"Семь символов","input":"Abcdef1\n","expected":["LEN"],"requirements":["R03","R08"],"boundary":true},
+  {"id":"T04","description":"Семнадцать символов","input":"Abcdefghijklmnop1\n","expected":["LEN"],"requirements":["R03","R08"],"boundary":true},
+  {"id":"T05","description":"Нет заглавной латинской буквы","input":"abcdefg1\n","expected":["UPPER"],"requirements":["R04","R08"],"boundary":false},
+  {"id":"T06","description":"Нет цифры","input":"Abcdefgh\n","expected":["DIGIT"],"requirements":["R05","R08"],"boundary":false},
+  {"id":"T07","description":"Пробел внутри строки","input":"Abcde f1\n","expected":["CHAR"],"requirements":["R02","R06","R08"],"boundary":false},
+  {"id":"T08","description":"Пустая строка + Enter","input":"\n","expected":["LEN","UPPER","DIGIT"],"requirements":["R09","R08"],"boundary":true},
+  {"id":"T09","description":"Три нарушения и порядок кодов","input":"abc\n","expected":["LEN","UPPER","DIGIT"],"requirements":["R03","R04","R05","R08"],"boundary":false},
+  {"id":"T10","description":"Запрещённый символ #","input":"Abcdef#1\n","expected":["CHAR"],"requirements":["R06","R08"],"boundary":false},
+  {"id":"T11","description":"Вторая строка игнорируется","input":"Abcdefg1\nabc\n","expected":["OK"],"requirements":["R02","R10"],"boundary":false},
+  {"id":"T12","description":"Пробелы по краям не удаляются","input":" Abcdefg1 ","expected":["CHAR"],"requirements":["R02","R06"],"boundary":false},
+  {"id":"T13","description":"EOF до первой строки","input":"","expected":["LEN","UPPER","DIGIT"],"requirements":["R09"],"boundary":true},
+  {"id":"T14","description":"Допустимые символы и числа","input":"Zyxwvut9\n","expected":["OK"],"requirements":["R04","R05","R06","R07"],"boundary":false},
+  {"id":"T15","description":"Кириллица недопустима","input":"Abcdefя1\n","expected":["CHAR"],"requirements":["R03","R06"],"boundary":false},
+  {"id":"T16","description":"Несколько нарушений включая CHAR","input":"abc#\n","expected":["LEN","UPPER","DIGIT","CHAR"],"requirements":["R03","R04","R05","R06","R08"],"boundary":false},
+  {"id":"T17","description":"Нарушение длины не скрывает другие коды","input":"A#\n","expected":["LEN","DIGIT","CHAR"],"requirements":["R03","R05","R06","R08"],"boundary":false},
+  {"id":"T18","description":"Строка из цифр без заглавных","input":"12345678\n","expected":["UPPER"],"requirements":["R04","R05","R08"],"boundary":false},
+  {"id":"T19","description":"Прописная латинская, цифра и допустимые символы","input":"A1234567\n","expected":["OK"],"requirements":["R03","R04","R05","R06","R07"],"boundary":false}
+]
